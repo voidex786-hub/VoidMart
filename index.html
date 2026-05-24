@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoidMart — Tech & Gadgets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">✓ <span id="toastMsg">Added to cart!</span></div>
+
+  <!-- Dim Overlay -->
+  <div class="dim" id="dim" onclick="closeAll()"></div>
+
+  <!-- ── NAVBAR ── -->
+  <nav>
+    <a href="#" class="logo">
+      VOIDMART
+      <span>ヴォイドマート — テック & ガジェット</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 CART
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🔥 New Drops Every Week</div>
+      <h1>
+        <span class="line1">VOID</span>
+        <span class="line2">MART</span>
+      </h1>
+      <p class="hero-jp">テック・ガジェット — 最先端テクノロジー</p>
+      <p class="hero-desc">The dopest tech & gadgets, delivered to your door. Streetwear meets Silicon Valley. Shop the future, today.</p>
+      <div class="hero-ctas">
+        <a href="#products" class="btn-primary">SHOP NOW →</a>
+        <a href="#categories" class="btn-outline">BROWSE CATS</a>
+      </div>
+    </div>
+    <div class="hero-floater">
+      <div class="hero-card">🎮<span>Gaming</span></div>
+      <div class="hero-card">🎧<span>Audio</span></div>
+      <div class="hero-card">📱<span>Mobile</span></div>
+      <div class="hero-card">💡<span>Smart Home</span></div>
+    </div>
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>🔥 FREE SHIPPING ON ALL ORDERS</span>
+      <span>✦ LATEST TECH DROPS</span>
+      <span>💳 COD AVAILABLE</span>
+      <span>⚡ FAST DELIVERY</span>
+      <span>🎮 GAMING GEAR</span>
+      <span>🎧 AUDIO TECH</span>
+      <span>📱 MOBILE GADGETS</span>
+      <span>🔥 FREE SHIPPING ON ALL ORDERS</span>
+      <span>✦ LATEST TECH DROPS</span>
+      <span>💳 COD AVAILABLE</span>
+      <span>⚡ FAST DELIVERY</span>
+      <span>🎮 GAMING GEAR</span>
+      <span>🎧 AUDIO TECH</span>
+      <span>📱 MOBILE GADGETS</span>
+    </div>
+  </div>
+
+  <!-- ── CATEGORIES ── -->
+  <section id="categories">
+    <div class="section-header">
+      <div>
+        <div class="section-sub">ショップ · SHOP BY</div>
+        <h2 class="section-title">BROWSE <em>CATEGORIES</em></h2>
+      </div>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="filterProducts('gaming')">
+        <div class="cat-icon">🎮</div>
+        <div class="cat-name">Gaming</div>
+        <div class="cat-count">6 products</div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('audio')">
+        <div class="cat-icon">🎧</div>
+        <div class="cat-name">Audio</div>
+        <div class="cat-count">5 products</div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('mobile')">
+        <div class="cat-icon">📱</div>
+        <div class="cat-name">Mobile</div>
+        <div class="cat-count">5 products</div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('smart-home')">
+        <div class="cat-icon">🏠</div>
+        <div class="cat-name">Smart Home</div>
+        <div class="cat-count">4 products</div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('wearables')">
+        <div class="cat-icon">⌚</div>
+        <div class="cat-name">Wearables</div>
+        <div class="cat-count">4 products</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRODUCTS ── -->
+  <section id="products">
+    <div class="section-header">
+      <div>
+        <div class="section-sub">プロダクト · ALL PRODUCTS</div>
+        <h2 class="section-title">HOT <em>DROPS</em></h2>
+      </div>
+      <a href="#" class="view-all">VIEW ALL</a>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterProducts('all', this)">ALL</button>
+      <button class="filter-btn" onclick="filterProducts('gaming', this)">🎮 GAMING</button>
+      <button class="filter-btn" onclick="filterProducts('audio', this)">🎧 AUDIO</button>
+      <button class="filter-btn" onclick="filterProducts('mobile', this)">📱 MOBILE</button>
+      <button class="filter-btn" onclick="filterProducts('smart-home', this)">🏠 SMART HOME</button>
+      <button class="filter-btn" onclick="filterProducts('wearables', this)">⌚ WEARABLES</button>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- ── BANNER ── -->
+  <div class="banner-section">
+    <div class="banner">
+      <div class="banner-content">
+        <h2>ORDER VIA<br><span class="gradient-text">WHATSAPP</span></h2>
+        <p>Chat with us directly — fast, easy, no accounts needed.</p>
+        <button class="btn-primary" onclick="openWhatsApp(null)">MESSAGE US NOW 💬</button>
+      </div>
+      <div class="banner-emoji">📦</div>
+    </div>
+  </div>
+
+  <!-- ── FEATURES ── -->
+  <section id="about">
+    <div class="section-header">
+      <div>
+        <div class="section-sub">なぜ · WHY VOIDMART</div>
+        <h2 class="section-title">THE <em>VOID DIFF</em></h2>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-title">FAST DELIVERY</div>
+        <div class="feature-desc">Express shipping across India. Your tech arrives before you expect it.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">WHATSAPP ORDERS</div>
+        <div class="feature-desc">No accounts, no hassle. Order directly through WhatsApp in seconds.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <div class="feature-title">CURATED QUALITY</div>
+        <div class="feature-desc">Every product is hand-picked. Only the dopest tech makes the cut.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💳</div>
+        <div class="feature-title">COD AVAILABLE</div>
+        <div class="feature-desc">Cash on delivery across major cities. Pay when it arrives.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-big">VOIDMART</div>
+        <p class="footer-desc">The future of tech shopping — bold, fast, and straight to your WhatsApp. Streetwear meets Silicon Valley.</p>
+        <div class="footer-socials">
+          <a class="social-btn" onclick="openWhatsApp(null)">💬</a>
+          <a class="social-btn" href="#">📸</a>
+          <a class="social-btn" href="#">🐦</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#" onclick="filterProducts('gaming')">Gaming</a></li>
+          <li><a href="#" onclick="filterProducts('audio')">Audio</a></li>
+          <li><a href="#" onclick="filterProducts('mobile')">Mobile</a></li>
+          <li><a href="#" onclick="filterProducts('smart-home')">Smart Home</a></li>
+          <li><a href="#" onclick="filterProducts('wearables')">Wearables</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a onclick="openWhatsApp(null)">WhatsApp Us</a></li>
+          <li><a href="mailto:hello@voidmart.in">hello@voidmart.in</a></li>
+          <li><a href="#">Instagram DM</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VoidMart. All rights reserved.</p>
+      <span>ヴォイドマート — VOID THE ORDINARY</span>
+    </div>
+  </footer>
+
+  <!-- ── PRODUCT MODAL ── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+      <button class="modal-close" onclick="closeModalBtn()">✕</button>
+      <div class="modal-grid">
+        <div class="modal-img" id="modalImg">📦</div>
+        <div class="modal-info">
+          <div class="modal-cat" id="modalCat">Category</div>
+          <div class="modal-name" id="modalName">Product Name</div>
+          <div class="modal-price" id="modalPrice">₹0</div>
+          <div class="modal-desc" id="modalDesc">Description</div>
+          <div class="modal-qty">
+            <span class="qty-label">QTY</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <div class="qty-num" id="qtyNum">1</div>
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+          <div class="modal-btns">
+            <button class="btn-primary" onclick="addFromModal()">ADD TO CART</button>
+            <button class="btn-outline" onclick="buyNow()">BUY NOW 💬</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CART SIDEBAR ── -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <div class="cart-title">MY CART 🛒</div>
+      <button class="cart-close" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <div class="empty-icon">🛒</div>
+        <p>YOUR CART IS EMPTY</p>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span class="cart-total-label">TOTAL</span>
+        <span class="cart-total-amount" id="cartTotal">₹0</span>
+      </div>
+      <button class="whatsapp-btn" onclick="openWhatsApp('cart')">
+        💬 ORDER ON WHATSAPP
+      </button>
+      <p class="whatsapp-note">You'll be redirected to WhatsApp to complete your order</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
