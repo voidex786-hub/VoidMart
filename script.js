@@ -141,8 +141,8 @@ function renderProducts(filter = 'all') {
         <div class="product-name">${p.name}</div>
         <div class="product-bottom">
           <div class="product-price">
-            ${p.oldPrice ? `<span class="old-price">&#8377;${p.oldPrice.toLocaleString()}</span>` : ''}
-            &#8377;${p.price.toLocaleString()}
+            ${p.oldPrice ? `<span class="old-price">₹${p.oldPrice.toLocaleString()}</span>` : ''}
+            ₹${p.price.toLocaleString()}
           </div>
           <button class="add-to-cart" onclick="addToCart(${p.id})">+ ADD</button>
         </div>
@@ -194,7 +194,7 @@ function openModal(id) {
 
   document.getElementById('modalCat').textContent = p.cat.replace('-', ' ').toUpperCase();
   document.getElementById('modalName').textContent = p.name;
-  document.getElementById('modalPrice').textContent = `&#8377;${p.price.toLocaleString()}`;
+  document.getElementById('modalPrice').textContent = '₹' + p.price.toLocaleString();
   document.getElementById('modalDesc').textContent = p.desc;
   document.getElementById('qtyNum').textContent = 1;
   document.getElementById('modalOverlay').classList.add('open');
@@ -225,7 +225,7 @@ function addFromModal() {
 
 function buyNow() {
   if (!currentProduct) return;
-  const msg = `Hi VoidMart! I want to buy:\n\n🛒 *${currentProduct.name}*\nQty: ${currentQty}\nPrice: Rs.${(currentProduct.price * currentQty).toLocaleString()}\n\nPlease confirm availability and delivery details.`;
+  const msg = `Hi VoidMart! I want to buy:\n\n🛒 *${currentProduct.name}*\nQty: ${currentQty}\nPrice: ₹${(currentProduct.price * currentQty).toLocaleString()}\n\nPlease confirm availability and delivery details.`;
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
@@ -261,7 +261,7 @@ function updateCart() {
   const total = cart.reduce((s, x) => s + x.price * x.qty, 0);
   const count = cart.reduce((s, x) => s + x.qty, 0);
   document.getElementById('cartCount').textContent = count;
-  document.getElementById('cartTotal').textContent = `Rs.${total.toLocaleString()}`;
+  document.getElementById('cartTotal').textContent = `₹${total.toLocaleString()}`;
 
   const el = document.getElementById('cartItems');
   if (cart.length === 0) {
@@ -280,7 +280,7 @@ function updateCart() {
       </div>
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">Rs.${(item.price * item.qty).toLocaleString()}</div>
+        <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString()}</div>
         <div class="cart-item-qty">
           <button class="ciq-btn" onclick="changeCartQty(${item.id}, -1)">-</button>
           <span class="ciq-num">${item.qty}</span>
@@ -309,9 +309,9 @@ function closeAll() {
 function openWhatsApp(mode) {
   let msg = '';
   if (mode === 'cart' && cart.length > 0) {
-    const items = cart.map((i) => `- ${i.name} x${i.qty} = Rs.${(i.price * i.qty).toLocaleString()}`).join('\n');
+    const items = cart.map((i) => `- ${i.name} x${i.qty} = ₹${(i.price * i.qty).toLocaleString()}`).join('\n');
     const total = cart.reduce((s, x) => s + x.price * x.qty, 0);
-    msg = `Hi VoidMart! I want to order:\n\n${items}\n\nTotal: Rs.${total.toLocaleString()}\n\nPlease confirm and share payment details. Thanks!`;
+    msg = `Hi VoidMart! I want to order:\n\n${items}\n\nTotal: ₹${total.toLocaleString()}\n\nPlease confirm and share payment details. Thanks!`;
   } else if (mode === 'cart') {
     showToast('Your cart is empty!');
     return;
