@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VoidMart — Tech & Gadgets</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -24,7 +24,7 @@
   <nav>
     <a href="#" class="logo">
       VOIDMART
-      <span>ヴォイドマート — テック & ガジェット</span>
+      
     </a>
     <ul class="nav-links">
       <li><a href="#categories">Categories</a></li>
@@ -47,7 +47,7 @@
         <span class="line1">VOID</span>
         <span class="line2">MART</span>
       </h1>
-      <p class="hero-jp">テック・ガジェット — 最先端テクノロジー</p>
+      
       <p class="hero-desc">The dopest tech & gadgets, delivered to your door. Streetwear meets Silicon Valley. Shop the future, today.</p>
       <div class="hero-ctas">
         <a href="#products" class="btn-primary">SHOP NOW →</a>
@@ -86,7 +86,7 @@
   <section id="categories">
     <div class="section-header">
       <div>
-        <div class="section-sub">ショップ · SHOP BY</div>
+        <div class="section-sub">SHOP BY</div>
         <h2 class="section-title">BROWSE <em>CATEGORIES</em></h2>
       </div>
     </div>
@@ -123,7 +123,7 @@
   <section id="products">
     <div class="section-header">
       <div>
-        <div class="section-sub">プロダクト · ALL PRODUCTS</div>
+        <div class="section-sub">ALL PRODUCTS</div>
         <h2 class="section-title">HOT <em>DROPS</em></h2>
       </div>
       <a href="#" class="view-all">VIEW ALL</a>
@@ -155,7 +155,7 @@
   <section id="about">
     <div class="section-header">
       <div>
-        <div class="section-sub">なぜ · WHY VOIDMART</div>
+        <div class="section-sub">WHY VOIDMART</div>
         <h2 class="section-title">THE <em>VOID DIFF</em></h2>
       </div>
     </div>
@@ -225,7 +225,7 @@
     </div>
     <div class="footer-bottom">
       <p>© 2025 VoidMart. All rights reserved.</p>
-      <span>ヴォイドマート — VOID THE ORDINARY</span>
+      <span>VOID THE ORDINARY</span>
     </div>
   </footer>
 
@@ -274,13 +274,84 @@
         <span class="cart-total-label">TOTAL</span>
         <span class="cart-total-amount" id="cartTotal">₹0</span>
       </div>
-      <button class="whatsapp-btn" onclick="openWhatsApp('cart')">
-        💬 ORDER ON WHATSAPP
+      <button class="whatsapp-btn" onclick="openCheckout()">
+        🛒 PLACE ORDER
       </button>
-      <p class="whatsapp-note">You'll be redirected to WhatsApp to complete your order</p>
+      <p class="whatsapp-note">Fill your address → order sent to our WhatsApp instantly!</p>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout-modal">
+      <button class="checkout-close" onclick="closeCheckout()">✕</button>
+
+      <!-- LEFT: Order Summary -->
+      <div class="co-summary">
+        <div class="co-summary-title">YOUR ORDER</div>
+        <div class="co-summary-count" id="coCount">0 items</div>
+        <div class="co-items" id="checkoutItems"></div>
+        <div class="co-total-row">
+          <span class="co-total-label">TOTAL</span>
+          <span class="co-total-amt" id="coTotal">₹0</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="co-form-wrap">
+        <div id="checkoutForm">
+          <div class="co-form-title">DELIVERY DETAILS</div>
+
+          <div class="co-row">
+            <div class="co-field">
+              <label class="co-label">Full Name</label>
+              <input class="co-input" id="coName" type="text" placeholder="Rahul Sharma" />
+            </div>
+            <div class="co-field">
+              <label class="co-label">Phone Number</label>
+              <input class="co-input" id="coPhone" type="tel" placeholder="9876543210" maxlength="10" />
+            </div>
+          </div>
+
+          <div class="co-field">
+            <label class="co-label">Full Address</label>
+            <input class="co-input" id="coAddress" type="text" placeholder="House No, Street, Locality" />
+          </div>
+
+          <div class="co-row">
+            <div class="co-field">
+              <label class="co-label">City</label>
+              <input class="co-input" id="coCity" type="text" placeholder="Mumbai" />
+            </div>
+            <div class="co-field">
+              <label class="co-label">Pincode</label>
+              <input class="co-input" id="coPincode" type="text" placeholder="400001" maxlength="6" />
+            </div>
+          </div>
+
+          <div class="co-field">
+            <label class="co-label">State</label>
+            <input class="co-input" id="coState" type="text" placeholder="Maharashtra" />
+          </div>
+
+          <button class="co-submit" onclick="placeOrder()">
+            💬 CONFIRM ORDER ON WHATSAPP
+          </button>
+          <p class="co-note">Your order details will be sent to our WhatsApp.<br/>We will confirm within 30 minutes!</p>
+        </div>
+
+        <!-- Success State -->
+        <div class="order-success" id="orderSuccess">
+          <div class="success-icon">🎉</div>
+          <div class="success-title">ORDER PLACED!</div>
+          <div class="success-msg">Hey <strong id="successName"></strong>!<br/>Your order has been sent to our WhatsApp.<br/>We will confirm it shortly!</div>
+          <div class="success-note">⏱ CONFIRMATION WITHIN 30 MINS</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script src="script.js"></script>
+  <script src="checkout.js"></script>
 </body>
 </html>
